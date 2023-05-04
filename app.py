@@ -10,6 +10,15 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 def home():
     return 'Esta é a tela HOME 🏚️'
 
+@app.route('/data', methods=['GET'])
+def get_data():
+    with open('data.json', 'r', encoding='utf-8') as file:
+        data = json.load(file)
+
+    data_to_sent = [{"nome": item['nome'], "reclamacao": item['reclamacao']} for item in data]
+    
+    return jsonify(data_to_sent)
+
 @app.route('/contato', methods=['POST'])
 def contato():
     with open('data.json', 'r', encoding='utf-8') as file:
