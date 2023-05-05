@@ -15,7 +15,7 @@ def get_data():
     with open('data.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
 
-    data_to_sent = [{"nome": item['nome'], "reclamacao": item['reclamacao']} for item in data]
+    data_to_sent = [{"nome": item['nome'], "reclamacao": item['reclamacao'], "id": item['id']} for item in data]
     
     return jsonify(data_to_sent)
 
